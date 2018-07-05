@@ -1,7 +1,7 @@
-const React = require('react');
-const PropTypes = require('prop-types');
-const Link = require('react-router-dom').Link;
-const PlayerPreview = require('./PlayerPreview');
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import PlayerPreview from './PlayerPreview';
 
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class PlayerInput extends React.Component {
   handleChange(event) {
     const value = event.target.value;
 
-    this.setState(() => ({username: value}))
+    this.setState(() => ({ username: value }))
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -27,8 +27,9 @@ class PlayerInput extends React.Component {
     );
   }
   render() {
-    const {username} = this.state;
-    const {label} = this.props;
+    const { username } = this.state
+    const { label } = this.props
+
     return (
       <form className='column' onSubmit={this.handleSubmit}>
         <label className='header' htmlFor='username'>{label}</label>
@@ -76,17 +77,17 @@ class Battle extends React.Component {
   handleSubmit(id, username) {
     this.setState(() => ({
       [id + 'Name']: username,
-      [id + 'Image']: 'https://github.com/' + username + '.png?size=200',
-    }));
+      [id + 'Image']: `https://github.com/${username}.png?size=200`
+    }))
   }
   handleReset(id) {
     this.setState(() => ({
       [id + 'Name']: '',
-      [id + 'Image']: null,
-    }));
+      [id + 'Image']: null
+    }))
   }
   render() {
-    const {match} = this.props;
+    const { match } = this.props;
     const { playerOneName, playerOneImage, playerTwoName, playerTwoImage } = this.state;
 
     return (
@@ -143,4 +144,4 @@ class Battle extends React.Component {
   }
 }
 
-module.exports = Battle;
+export default Battle;
